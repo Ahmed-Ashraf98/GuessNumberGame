@@ -9,6 +9,7 @@ const clickEventName = "click";
 
 let currentScore = 20;
 let targetNumber;
+let currentHighScore = 0;
 
 (function () {
   targetNumber = generateNumber();
@@ -39,8 +40,11 @@ function handleCheckEvent() {
       updateScore();
     } else if (valueAsNum === targetNumber) {
       updateMessage("Correct Number🎉🎉🎉");
+      updateHighScore();
       showTargetNumber();
     }
+  } else if (currentScore == 0) {
+    updateMessage("No more chances, please hit try again button 😔");
   }
 }
 
@@ -75,4 +79,11 @@ function hideTargetNumber() {
 
 function decreaseScore() {
   currentScore--;
+}
+
+function updateHighScore() {
+  if (currentScore > currentHighScore) {
+    currentHighScore = currentScore;
+    highScoreEle.textContent = currentHighScore;
+  }
 }
