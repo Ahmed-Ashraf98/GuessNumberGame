@@ -30,12 +30,10 @@ function handleCheckEvent() {
   if (!valueAsNum) {
     updateMessage("⛔NOT A Number⛔");
   } else if (valueAsNum && currentScore > 0) {
-    if (valueAsNum > targetNumber) {
-      updateMessage("To High 📈");
-      decreaseScore();
-      updateScore();
-    } else if (valueAsNum < targetNumber) {
-      updateMessage("To Low 📉");
+    if (valueAsNum !== targetNumber) {
+      valueAsNum > targetNumber
+        ? updateMessage("To High 📈")
+        : updateMessage("To Low 📉");
       decreaseScore();
       updateScore();
     } else if (valueAsNum === targetNumber) {
@@ -44,7 +42,7 @@ function handleCheckEvent() {
       showTargetNumber();
     }
   } else if (currentScore == 0) {
-    updateMessage("No more chances, please hit try again button 😔");
+    updateMessage("You Lost The Game!! 😔");
   }
 }
 
